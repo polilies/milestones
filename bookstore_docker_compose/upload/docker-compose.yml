@@ -19,9 +19,8 @@ services:
             - "80:80"
         networks:
             - polinet
-        volumes:
-            - /var/opt/my_website/dist:/usr/share/nginx/html:ro
-
+        #volumes:
+        #    - home/ec2-user/vol:/vol:ro
 networks:
     polinet:
         driver: bridge
