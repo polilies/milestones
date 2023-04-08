@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-deployment
+spec:
+  selector:
+    matchLabels:
+      app: mysql-dep
+  replicas: 1 
+  template:
+    metadata:
+      labels:
+        app: mysql-dep
+    spec:
+      containers:
+      - name: mysqldb
+        image: mysql:5.7
+        envFrom:
+        - configMapRef:
+            name: cmforall
+        - secretRef:
+            name: secret-for-all
+        ports:
+        - containerPort: 3306
+        resources:
+          limits:
+            memory: 500Mi
+            cpu: 100m
+          requests:
+            memory: 250Mi
+            cpu: 80m
+        volumeMounts:
+        # a mount for site-data
+        - name: db-volume
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: db-volume
+        persistentVolumeClaim:
+          claimName: db-pv-claim

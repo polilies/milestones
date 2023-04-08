@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-service
+  labels:
+    name: web
+spec:
+  selector:
+    name: web 
+  #type: ClusterIP
+  type: NodePort
+  ports:
+   - name: web
+     port: 80
+     targetPort: 80
+     nodePort: 30001
+     protocol: TCP

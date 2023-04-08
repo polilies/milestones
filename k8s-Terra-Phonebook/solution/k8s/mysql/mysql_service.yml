@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: db-service
+  labels:
+    name: db
+spec:
+  selector:
+    app: mysql-dep 
+  type: ClusterIP
+  #type: NodePort
+  ports:
+   - name: mysqldb
+     port: 3306
+     targetPort: 3306
+     #nodePort: 30004
+     protocol: TCP

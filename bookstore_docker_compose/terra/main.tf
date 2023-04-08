@@ -33,6 +33,7 @@ resource "github_repository" "bookstore" {
   description = "docker-compose, docker build, terraform github repo creation, aws_ec2 "
   auto_init   = true
   visibility  = "public"
+
   #branch      = "main"
   /*   template {
     owner                = "github"
